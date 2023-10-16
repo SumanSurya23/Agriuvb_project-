@@ -1,0 +1,134 @@
+{% extends "ghapp/master.html" %}
+
+{% block title %}Green House System{% endblock %}
+
+
+{% block content %}
+
+<fieldset class="preview-border col-md-6">
+	<legend>Commands:</legend>
+	<!-- <div class="btncontainer">
+		<button class="btn btn-info" id="lights_button">Lights</button>
+		<label class="label label-info response_label" id="lights_response_label"></label>
+	</div>
+	<div class="btncontainer">
+		<button class="btn btn-info" id="vent_button">Vent</button>
+		<label class="label label-info response_label" id="vent_response_label"></label>
+	</div>
+	<div class="btncontainer">
+		<button class="btn btn-info" id="pump_button">Pump</button>
+		<label class="label label-info response_label" id="pump_response_label"></label>
+	</div>
+	<div class="btncontainer">
+		<button class="btn btn-info" id="fan_button">Fan</button>
+		<label class="label label-info response_label" id="fan_response_label"></label>
+	</div> -->
+
+	<div class="btncontainer">
+		<button class="btn btn-info" id="UVB">UVB_1</button>
+		<label class="label label-info response_label" id="UVB_response_label"></label>
+	</div>
+	<div class="btncontainer">
+		<button class="btn btn-info" id="UVB_2">UVB_2</button>
+		<label class="label label-info response_label" id="UVB_2_response_label"></label>
+	</div>
+	<div class="btncontainer">
+		<button class="btn btn-info" id="UVB_3">UVB_3</button>
+		<label class="label label-info response_label" id="UVB_3_response_label"></label>
+	</div>
+	<div class="btncontainer">
+		<button class="btn btn-info" id="UVB_4">UVB_4</button>
+		<label class="label label-info response_label" id="UVB_4_response_label"></label>
+	</div>
+
+</fieldset>
+<script>
+	console.log('vanthuren daaaa')
+	let UVB_1_state = false;
+	let UVB_2_state = false;
+	let UVB_3_state = false;
+	let UVB_4_state = false;
+ $("#UVB").click(function(){
+	console.log("lights clicked");
+	if (!UVB_1_state){
+		console.log("turning lights on");
+		$.post(url,{"command":11},function(data, status){
+			console.log(JSON.stringify(data));
+			$("#UVB_response_label").text(JSON.stringify(data));
+			UVB_1_state= true;
+		});
+	}else{
+		console.log("turning lights off");
+		$.post(url,{"command":10},function(data, status){
+			console.log(JSON.stringify(data));
+			$("#UVB_response_label").text(JSON.stringify(data));
+			UVB_1_state = false;
+		});
+	}
+  });
+
+  $("#UVB_2").click(function(){
+		console.log("lights clicked");
+	    if (!UVB_2_state){
+	    	console.log("turning lights on");
+	    	$.post(url,{"command":21},function(data, status){
+	    		console.log(JSON.stringify(data));
+	    		$("#UVB_2_response_label").text(JSON.stringify(data));
+	    		UVB_2_state = true;
+	    	});
+	    }else{
+	    	console.log("turning lights off");
+	    	$.post(url,{"command":20},function(data, status){
+	    		console.log(JSON.stringify(data));
+	    		$("#UVB_2_response_label").text(JSON.stringify(data));
+	    		UVB_2_state = false;
+	    	});
+	    }
+	});
+	$("#UVB_3").click(function(){
+		console.log("lights clicked");
+	    if (!UVB_3_state){
+	    	console.log("turning lights on");
+	    	$.post(url,{"command":31},function(data, status){
+	    		console.log(JSON.stringify(data));
+	    		$("#UVB_3_response_label").text(JSON.stringify(data));
+	    		UVB_3_state = true;
+	    	});
+	    }else{
+	    	console.log("turning lights off");
+	    	$.post(url,{"command":30},function(data, status){
+	    		console.log(JSON.stringify(data));
+	    		$("#UVB_3_response_label").text(JSON.stringify(data));
+	    		UVB_3_state = false;
+	    	});
+	    }
+	});
+	$("#UVB_4").click(function(){
+		console.log("lights clicked");
+	    if (!UVB_4_state){
+	    	console.log("turning lights on");
+	    	$.post(url,{"command":41},function(data, status){
+	    		console.log(JSON.stringify(data));
+	    		$("#UVB_4_response_label").text(JSON.stringify(data));
+	    		UVB_4_state = true;
+	    	});
+	    }else{
+	    	console.log("turning lights off");
+	    	$.post(url,{"command":40},function(data, status){
+	    		console.log(JSON.stringify(data));
+	    		$("#UVB_4_response_label").text(JSON.stringify(data));
+	    		UVB_4_state = false;
+	    	});
+	    }
+	});
+</script>
+{% endblock %}
+
+
+{% block footer %}
+<ul class="nav navbar-nav">
+	<li>
+		<a class = "nav-link" href="{% url 'ghapp:logout' %}">Logout</a>
+	</li>
+</ul>
+{% endblock %}
